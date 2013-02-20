@@ -36,8 +36,8 @@ plugins=(autojump git github bundler rails3 vagrant per-directory-history extrac
 
 source $ZSH/oh-my-zsh.sh
 
-# Color listing
-eval $(dircolors ~/.homesick/repos/bskyb-commerce-helpcentre/sky-dotfiles/home/gnome-terminal-colors-solarized/dircolors.ansi-dark)
+#Color listing
+#eval $(dircolors ~/.homesick/repos/bskyb-commerce-helpcentre/sky-dotfiles/home/gnome-terminal-colors-solarized/dircolors.ansi-dark)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #source ~/.cinderella.profile
