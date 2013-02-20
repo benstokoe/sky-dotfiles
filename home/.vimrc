@@ -92,8 +92,8 @@ autocmd FileType           html   setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType           php    setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " Use ~/tmp/ for swp and backup dir
-set backupdir=~/.tmp
-set directory=~/.tmp
+set backupdir=/tmp
+set directory=/tmp
 
 " case insensitive search
 set ignorecase
@@ -203,3 +203,8 @@ endfunction
 
 map <Leader>t :call RunCurrentTest()<CR>
 inoremap jj <ESC>
+
+set t_Co=16
+let g:solarized_termcolors=16
+set background=dark
+colorscheme solarized
