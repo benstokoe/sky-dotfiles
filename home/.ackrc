@@ -18,3 +18,4 @@
 --type-set=sass=.sass,.scss
 --type-set=haml=.haml
 --type-set=puppet=.pp
+--type-set=feature=.feature
