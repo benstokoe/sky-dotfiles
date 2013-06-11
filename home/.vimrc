@@ -208,3 +208,6 @@ set t_Co=16
 let g:solarized_termcolors=16
 set background=dark
 colorscheme solarized
+
+" Powerline!
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim

@@ -8,7 +8,7 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="rdowden" # based on robbyrussell 
 #ZSH_THEME="powerline"
 DEFAULT_USER='user'
-ZSH_THEME="agnoster"
+ZSH_THEME="powerline"
 
 export EDITOR=vim
 
@@ -49,13 +49,11 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 #if [ -f `brew --prefix`/etc/autojump ]; then
   #. `brew --prefix`/etc/autojump
 #fi
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
 export EDITOR_X_HTTP_AUTHORIZATION='3ebd89253c6cfe6e8c3afd559ca8899bd0c2609ce87ae98915f760d3ed10098c'
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+#. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
