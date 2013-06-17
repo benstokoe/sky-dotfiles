@@ -38,7 +38,7 @@ source $ZSH/oh-my-zsh.sh
 [[ -s /opt/boxen/env.sh ]] && source /opt/boxen/env.sh
 
 #Color listing
-eval $(dircolors ~/.homesick/repos/bskyb-commerce/sky-dotfiles/home/dircolors/dircolors.ansi-dark)
+[[ -f dircolors ]] && eval $(dircolors ~/.homesick/repos/bskyb-commerce/sky-dotfiles/home/dircolors/dircolors.ansi-dark)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #source ~/.cinderella.profile
