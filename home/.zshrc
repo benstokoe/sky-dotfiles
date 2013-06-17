@@ -46,9 +46,9 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # export DYLD_LIBRARY_PATH="~/Developer/Cellar/mysql/5.5.19/lib:$DYLD_LIBRARY_PATH"
 
 # AutoJump
-#if [ -f `brew --prefix`/etc/autojump ]; then
-  #. `brew --prefix`/etc/autojump
-#fi
+if [ -f `brew --prefix`/etc/autojump ]; then
+  . `brew --prefix`/etc/autojump
+fi
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
