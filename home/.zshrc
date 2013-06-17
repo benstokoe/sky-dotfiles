@@ -35,6 +35,7 @@ plugins=(autojump git github bundler rails3 vagrant per-directory-history extrac
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 source $ZSH/oh-my-zsh.sh
+[[ -s /opt/boxen/env.sh ]] && source /opt/boxen/env.sh
 
 #Color listing
 eval $(dircolors ~/.homesick/repos/bskyb-commerce/sky-dotfiles/home/dircolors/dircolors.ansi-dark)
