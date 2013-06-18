@@ -1,5 +1,4 @@
 # Only search with case sensitivity if there is mixed case
---type=text
 --smart-case
 
 # Ignore
