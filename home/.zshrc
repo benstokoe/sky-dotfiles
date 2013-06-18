@@ -10,6 +10,13 @@ ZSH=$HOME/.oh-my-zsh
 DEFAULT_USER='user'
 ZSH_THEME="powerline"
 
+POWERLINE_HIDE_USER_NAME="true"
+POWERLINE_NO_BLANK_LINE="true"
+POWERLINE_DETECT_SSH="true"
+
+POWERLINE_RIGHT_A="mixed"
+POWERLINE_DATE_FORMAT="%D{%d-%m}"
+
 export EDITOR=vim
 
 # Set to this to use case-sensitive completion
@@ -22,7 +29,7 @@ export EDITOR=vim
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
