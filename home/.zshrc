@@ -8,7 +8,8 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="rdowden" # based on robbyrussell 
 #ZSH_THEME="powerline"
 DEFAULT_USER='user'
-ZSH_THEME="powerline"
+#ZSH_THEME="powerline"
+ZSH_THEME="agnoster"
 
 POWERLINE_HIDE_USER_NAME="true"
 POWERLINE_NO_BLANK_LINE="true"
@@ -42,7 +43,6 @@ plugins=(autojump git github bundler rails3 vagrant per-directory-history extrac
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 source $ZSH/oh-my-zsh.sh
-[[ -s /opt/boxen/env.sh ]] && source /opt/boxen/env.sh
 
 #Color listing
 [[ -f dircolors ]] && eval $(dircolors ~/.homesick/repos/bskyb-commerce/sky-dotfiles/home/dircolors/dircolors.ansi-dark)
@@ -62,6 +62,6 @@ fi
 
 export EDITOR_X_HTTP_AUTHORIZATION='3ebd89253c6cfe6e8c3afd559ca8899bd0c2609ce87ae98915f760d3ed10098c'
 
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=~/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:$PATH
 
 #. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
