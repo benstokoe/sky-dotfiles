@@ -10,3 +10,6 @@ sky-dotfiles
     cd ~/.homesick/repos/bskyb-commerce/sky-dotfiles/home/.vim
     git submodule update --init
     homesick symlink bskyb-commerce/sky-dotfiles
+    
+    Install Vundler for vim (if you're using it) 
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
