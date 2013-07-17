@@ -1,213 +1,232 @@
-" ~/.vimrc
-" vim:set ft=vim et tw=78 sw=2:
+" Example Vim configuration.
+" Copy or symlink to ~/.vimrc or ~/_vimrc.
+
+set nocompatible                  " Must come first because it changes other options.
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" enable system clipboard
+if $TMUX == ''
+  "set clipboard=unnamed
+  set clipboard+=unnamed
+endif
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+map ,p :NERDTreeToggle<CR>
+Bundle 'kien/ctrlp.vim'
+map ,b :CtrlPBuffer<CR>
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-liquid'
+Bundle 'tpope/vim-bundler'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Lokaltog/vim-powerline'
+let g:Powerline_symbols = 'fancy'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'godlygeek/tabular'
+"autocmd VimEnter * RainbowParenthesesToggle
+
+" Snippets in vim
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/vim-snippets"
+Bundle "garbas/vim-snipmate"
+
+" Copy/Paste Mac
+Bundle "kana/vim-fakeclip"
+
+" Ack
+Bundle 'ack.vim'
+
+" Omincomplete
+Bundle 'Shougo/neocomplcache'
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+ \ 'default' : '',
+ \ 'vimshell' : $HOME.'/.vimshell_hist',
+ \ 'scheme' : $HOME.'/.gosh_completions'
+ \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g>  neocomplcache#undo_completion()
+inoremap <expr><C-l>  neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <expr><CR>  neocomplcache#smart_close_popup() .
+"\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h>  neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>   neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+set pastetoggle=<F2>
+
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() .
+"\<CR>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:neocomplcache_omni_patterns.php = '[^.\t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 let mapleader = ","
 
-" Section: Options {{{1
-" ---------------------
-if has("win32")
-  let &runtimepath = substitute(&runtimepath,'\(Documents and Settings[\\/][^\\/]*\)[\\/]\zsvimfiles\>','.vim','g')
-endif
+syntax enable                     " Turn on syntax highlighting.
+" Toggle RainbowParenthese highlighting
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
-silent! call pathogen#runtime_append_all_bundles()
+set autoread                      " Turn on autoread to watch for changes
+:au CursorHold * checktime        " Fires after you move the cursor and then let it sit still for updatetime
 
-set nocompatible
-set autoindent
-set autowrite       " Automatically save before commands like :next and :make
-set backspace=2
-set backupskip+=*.tmp,crontab.*
+filetype plugin indent on         " Turn on file type detection.
 
-filetype plugin indent on
+set showcmd                       " Display incomplete commands.
+set showmode                      " Display the mode you're in.
 
-if has("balloon_eval") && has("unix")
-  set ballooneval
-endif
+set backspace=indent,eol,start    " Intuitive backspacing.
 
-set showbreak=↳\ 
+set hidden                        " Handle multiple buffers better.
 
-set cmdheight=2
-set complete-=i     " Searching includes can be slow
-set display=lastline
+set wildmenu                      " Enhanced command line completion.
+set wildmode=list:longest         " Complete files like a shell.
 
-set incsearch       " Incremental search
-set joinspaces
-set laststatus=2    " Always show status line
-set number          " Show line numbers
+set ignorecase                    " Case-insensitive searching.
+set smartcase                     " But case-sensitive if expression contains a capital letter.
 
-"set lazyredraw
+set number                        " Show line numbers.
+set ruler                         " Show cursor position.
 
-set listchars=tab:>\ ,trail:-
-set listchars+=extends:>,precedes:<
-if version >= 700
-  set listchars+=nbsp:+
-endif
+set incsearch                     " Highlight matches as you type.
+set hlsearch                      " Highlight matches.
 
-set modelines=5      " Debian likes to disable this
-set scrolloff=5      " minimum number of lines above and below the cursor
-set showcmd          " Show (partial) command in status line.
-set showmatch        " Show matching brackets.
-set smartcase        " Case insensitive searches become sensitive with capitals
-set smarttab         " sw at the start of the line, sts everywhere else
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set softtabstop=2
-set splitbelow       " Split windows at bottom
+set wrap                          " Turn on line wrapping.
+set scrolloff=3                   " Show 3 lines of context around the cursor.
 
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%{exists('*rails#statusline')?rails#statusline():''}%{exists('*fugitive#statusline')?fugitive#statusline():''}*%=%-16(\ %l,%c-%v\ %)%P
+set title                         " Set the terminal's title
 
-set tags+=../tags,../../tags,../../../tags,../../../../tags
-set timeoutlen=1200 " A little bit more time for macros
-set ttimeoutlen=50  " Make Esc work faster
+set visualbell                    " No beeping.
 
-set visualbell " Instead of beeping when doing something wrong
-set virtualedit=block
-set wildmenu
-set wildmode=longest,list
-set wildignore=.git,downloader,pkginfo,includes,tmp
-set winaltkeys=no
+set nobackup                      " Don't make a backup before overwriting a file.
+set nowritebackup                 " And again.
+set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
-if !has("gui_running") && $DISPLAY == '' || !has("gui")
-  set mouse=
-endif
+" UNCOMMENT TO USE
+set tabstop=2                    " Global tab width.
+set shiftwidth=2                 " And again, related.
+set expandtab                    " Use spaces instead of tabs
 
-" Section: Mappings {{{1
-" ----------------------
+set laststatus=2                  " Show the status line all the time
+" Useful status information at bottom of screen
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-map \\ <Plug>NERDCommenterInvert
-map <Leader>v  :so ~/.vimrc<CR>
-
-" Section: Visual
-" ---------------
-syntax enable
-
-" Set control and e expand zencoding
-let g:user_zen_expandabbr_key = '<c-e>'
-
-" Set json filestype to javascript for syntax check
-autocmd BufNewFile,BufRead *.json   set ft=javascript
-autocmd BufNewFile,BufRead *.coffee set ft=coffee
-autocmd FileType           html   setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType           php    setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
-" Use ~/tmp/ for swp and backup dir
-set backupdir=/tmp
-set directory=/tmp
-
-" case insensitive search
-set ignorecase
-set smartcase
-
-"Better line wrapping 
-set nowrap
-set textwidth=79
-set formatoptions=qrn1
-
-"Enable code folding
-set nofoldenable
-
-silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
-
-"Enabling Zencoding
-let g:user_zen_settings = {
-  \  'php' : {
-  \    'extends' : 'html',
-  \    'filters' : 'c',
-  \  },
-  \  'xml' : {
-  \    'extends' : 'html',
-  \  },
-  \  'haml' : {
-  \    'extends' : 'html',
-  \  },
-  \  'erb' : {
-  \    'extends' : 'html',
-  \  },
- \}
-
-let g:CommandTMaxDepth = 20
-let g:CommandTMaxHeight = 8
-
-" Remove toolbar
-setglobal guioptions-=T
-setglobal guioptions-=r
-setglobal guioptions-=L
-
-set completeopt+=longest,menu,preview
-
-inoremap jj <ESC>
-
-" ---------------------------------------------------------------------------
-"  Strip all trailing whitespace in file
-" ---------------------------------------------------------------------------
-function! StripWhitespace ()
-  exec ':%s/ \+$//gc'
-endfunction
-map ,s :call StripWhitespace ()<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Test-running stuff
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RunCurrentTest()
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFile()
-
-    if match(expand('%'), '\.feature$') != -1
-      call SetTestRunner("!cucumber")
-      exec g:bjo_test_runner g:bjo_test_file
-    elseif match(expand('%'), '_spec\.rb$') != -1
-      call SetTestRunner("!rspec")
-      exec g:bjo_test_runner g:bjo_test_file
-    else
-      call SetTestRunner("!ruby -Itest")
-      exec g:bjo_test_runner g:bjo_test_file
-    endif
-  else
-    exec g:bjo_test_runner g:bjo_test_file
-  endif
-endfunction
-
-function! SetTestRunner(runner)
-  let g:bjo_test_runner=a:runner
-endfunction
-
-function! RunCurrentLineInTest()
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFileWithLine()
-  end
-
-  exec "!rspec" g:bjo_test_file . ":" . g:bjo_test_file_line
-endfunction
-
-function! SetTestFile()
-  let g:bjo_test_file=@%
-endfunction
-
-function! SetTestFileWithLine()
-  let g:bjo_test_file=@%
-  let g:bjo_test_file_line=line(".")
-endfunction
-
-function! CorrectTestRunner()
-  if match(expand('%'), '\.feature$') != -1
-    return "cucumber"
-  elseif match(expand('%'), '_spec\.rb$') != -1
-    return "rspec"
-  else
-    return "ruby"
-  endif
-endfunction
-
-map <Leader>t :call RunCurrentTest()<CR>
-inoremap jj <ESC>
-
-set t_Co=16
-let g:solarized_termcolors=16
-set background=dark
+" Or use vividchalk
+"colorscheme topfunky-light
 colorscheme solarized
 
-" Powerline!
-set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+" Tab mappings.
+map <leader>tt :tabnew<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
+map <leader>tm :tabmove
+
+" Spell checking with ,s
+nmap <silent> <leader>s :set spell!<CR>
+" Set region to British English
+set spelllang=en_gb
+
+" Uncomment to use Jamis Buck's file opening plugin
+"map <Leader>t :FuzzyFinderTextMate<Enter>
+
+" CtrtlP Plugin mappings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+" Exclude the following:
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+
+" Controversial...swap colon and semicolon for easier commands
+"nnoremap ; :
+"nnoremap : ;
+
+"vnoremap ; :
+"vnoremap : ;
+
+" Automatic fold settings for specific files. Uncomment to use.
+" autocmd FileType ruby setlocal foldmethod=syntax
+" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+
+" For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
+autocmd BufNewFile,BufRead *_spec.rb compiler rspec
