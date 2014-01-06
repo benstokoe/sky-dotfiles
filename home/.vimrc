@@ -35,8 +35,8 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-bundler'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'Lokaltog/vim-powerline'
-let g:Powerline_symbols = 'fancy'
+Bundle 'bling/vim-airline'
+let g:airline_powerline_fonts = 1
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'godlygeek/tabular'
 "autocmd VimEnter * RainbowParenthesesToggle
