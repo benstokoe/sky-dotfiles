@@ -37,7 +37,7 @@ DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump git github bundler rails3 vagrant per-directory-history extract)
+plugins=(autojump git github bundler rails vagrant per-directory-history extract)
 
 # Source TMUXinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
