@@ -41,6 +41,9 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'godlygeek/tabular'
 "autocmd VimEnter * RainbowParenthesesToggle
 
+" Syntax highlighting
+Bundle 'markcornick/vim-vagrant'
+
 " Snippets in vim
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
